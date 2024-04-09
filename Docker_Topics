@@ -6,7 +6,19 @@
 4.Inspect docker image ,Remove docker image , See history of Docker image , List all the docker images .
 5.DockerFiles ( Lable ,Run,Env,Workdir ,copy ,add) . Using Cmd to run docker file .
 6.Expose and Create SSH container using DockerFile .
-7.Volumer(Docker Storage) - remove and prune the volumes .
+7.Volume(Docker Storage) - remove and prune the volumes .
 8.Bind Mount .
-9.Docker Networking (Bridge Network ,DNS enable , Host Network ,Connecg and Disconnect the network ) ;
-10.
+9.Docker Networking (Bridge Network ,DNS enable , Host Network ,Connect and Disconnect the network ) ;
+10.Docker Registry .
+11 Docker Compose .
+12.Docker Swarm .
+
+
+Docker Compose : 
+1.Docker Compose Networking
+2.Docker Compose Commands and CLI Usage
+3.Scaling Services with Docker Compose
+4.Health Checks and Automatic Restart Policies
+5.Integration with Docker Swarm or Kubernetes
+6.Continuous Integration and Deployment (CI/CD) with Docker Compose
+7.Docker Compose in Microservices Architecture
