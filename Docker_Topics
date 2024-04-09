@@ -1,11 +1,12 @@
 # Docker_Repo-s
 
 1.Docker Container.
-2. Port Mapping ,rename container , restart container , exec container , Copy file in container.
+2.Port Mapping ,rename container , restart container , exec container , Copy file in container.
 3.Create Docker image from Running Container .
-4. inspect docker image ,Remove docker image , See history of Docker image , List all the docker images .
-5, DockerFiles ( Lable ,Run,Env,Workdir ,copy ,add) . Using Cmd to run docker file .
+4.Inspect docker image ,Remove docker image , See history of Docker image , List all the docker images .
+5.DockerFiles ( Lable ,Run,Env,Workdir ,copy ,add) . Using Cmd to run docker file .
 6.Expose and Create SSH container using DockerFile .
-7. Volumer(Docker Storage) - remove and prune the volumes .
-8. Bind Mount .
-9. Docker Networking (Bridge Network ,DNS enable , Host Network ,Connecg and Disconnect the network ) ;
+7.Volumer(Docker Storage) - remove and prune the volumes .
+8.Bind Mount .
+9.Docker Networking (Bridge Network ,DNS enable , Host Network ,Connecg and Disconnect the network ) ;
+10.
