@@ -16,11 +16,11 @@ Docker Installation :
 3.Start docker Service
 4.Stop docker
 
-Docker Architecture
+Docker Architecture:
 1.Docker Client
 2.Docker Daemon
 
-Docker Basic Commands
+Docker Basic Commands:
 1.docker version
 2.docker info
 3.docker help
@@ -32,12 +32,12 @@ Docker Basic Commands
 9.docker push
 10.docker rm
 
-Writing Docker File
+Writing Docker File :
 1.Creating Docker File using
 2.Visual Source Code IDE
 3.Understanding the Instructions used in Docker file
 
-Docker Images
+Docker Images :
 1Understanding the Base Image
 2.Image Layered Structure
 3.Internals of docker Image
@@ -49,7 +49,7 @@ Docker Images
 9.Get all images
 10.Run , inspect, remove and prune images
 
-Docker Containers
+Docker Containers :
 1.Running Docker Containers from Images
 2.Listing Running Containers
 3.Container Lifecycle
@@ -64,7 +64,7 @@ Docker Containers
 12.Running Containers in Bash Mode using IT flag
 13.Container Isolation
 
-Docker Volume
+Docker Volume :
 1.Advantages
 2.Bind Mounts
 3.Volumes over Bind Mounts
@@ -73,7 +73,7 @@ Docker Volume
 6.Run Container on Volumes
 7.Remove Volumes
 
-Docker Compose
+Docker Compose :
 1.Installation
 2.Docker Compose file
 3.Check the validity of the file
