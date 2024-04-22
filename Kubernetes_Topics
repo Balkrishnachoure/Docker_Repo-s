@@ -1,1 +1,71 @@
+Chpters : Container Orchestration Tool: Kubernetes
 
+
+What is Kubernetes?
+
+Why Kubernetes?
+
+Zero downtime
+Self-healing
+Auto scaling
+Rolling Updates
+Roll Backs
+What is Cluster?
+
+What is Node?
+
+Kubernetes Architecture
+
+A. Master Node
+API Server
+Etcd
+Scheduler
+Controller
+B. Worker Node
+Kubelet
+Kube-proxy
+Kubernetes Installation
+
+Single Node Deployment Installation Using Minikube
+Multi Node/HA Deployment Using KubeAdm
+Kubernetes Development IDE: LENS and Rancher
+Namespaces
+
+Workloads:
+
+Overview
+Pods
+Deployments
+DaemonSets
+StatefulSets
+ReplicaSets
+Configuration:
+
+ConfigMaps
+Secrets
+Resource Quotas
+Limit Ranges
+HPA
+Network:
+
+Services
+Endpoints
+Ingress
+Network Policies
+Port Forwarding
+Storage:
+
+Persistent Volumes
+Persistent Volume Claims
+Storage Classes
+Access Control:
+
+Service Accounts
+Cluster Roles
+Roles
+Cluster Role Bindings
+Role Bindings
+Pod Security Policies
+Apps:
+
+Helm Charts and Releases
