@@ -5,67 +5,67 @@ What is Kubernetes?
 
 Why Kubernetes?
 
-Zero downtime
-Self-healing
-Auto scaling
-Rolling Updates
-Roll Backs
-What is Cluster?
+1.Zero downtime
+2.Self-healing
+3.Auto scaling
+4.Rolling Updates
+5.Roll Backs
+6.What is Cluster?
 
 What is Node?
 
-Kubernetes Architecture
+Kubernetes Architecture :
+A. Master Node :
+ 1.API Server
+2.Etcd
+3.Scheduler
+4.Controller
 
-A. Master Node
-API Server
-Etcd
-Scheduler
-Controller
-B. Worker Node
-Kubelet
-Kube-proxy
-Kubernetes Installation
+B. Worker Node :
+1.Kubelet
+2.Kube-proxy
 
-Single Node Deployment Installation Using Minikube
-Multi Node/HA Deployment Using KubeAdm
-Kubernetes Development IDE: LENS and Rancher
+Kubernetes Installation :
+1.Single Node Deployment Installation Using Minikube
+2.Multi Node/HA Deployment Using KubeAdm
+3.Kubernetes Development IDE: LENS and Rancher
+
 Namespaces
 
 Workloads:
+1.Overview
+2.Pods
+3.Deployments
+4.DaemonSets
+5.StatefulSets
+6.ReplicaSets
 
-Overview
-Pods
-Deployments
-DaemonSets
-StatefulSets
-ReplicaSets
 Configuration:
+1.ConfigMaps
+2.Secrets
+3.Resource Quotas
+4.Limit Ranges
+5.HPA
 
-ConfigMaps
-Secrets
-Resource Quotas
-Limit Ranges
-HPA
 Network:
+1.Services
+2.Endpoints
+3.Ingress
+4.Network Policies
+5.Port Forwarding
 
-Services
-Endpoints
-Ingress
-Network Policies
-Port Forwarding
 Storage:
+1.Persistent Volumes
+2.Persistent Volume Claims
+3.Storage Classes
 
-Persistent Volumes
-Persistent Volume Claims
-Storage Classes
 Access Control:
+1.Service Accounts
+2.Cluster Roles
+3.Roles
+4.Cluster Role Bindings
+5.Role Bindings
+6.Pod Security Policies
 
-Service Accounts
-Cluster Roles
-Roles
-Cluster Role Bindings
-Role Bindings
-Pod Security Policies
 Apps:
-
 Helm Charts and Releases
