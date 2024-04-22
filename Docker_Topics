@@ -11,10 +11,10 @@ A Use case Driven Problem Statement
  1.Applying the Solution with Docker
 
 Docker Installation :
-Chose OS
-1.Install Docker
-2.Start docker Service
-3.Stop docker
+1.Chose OS
+2.Install Docker
+3.Start docker Service
+4.Stop docker
 
 Docker Architecture
 1.Docker Client
