@@ -1,5 +1,89 @@
 # Docker_Repo-s
 
+
+# Chapters : 
+Container Management Tool: Docker
+
+What is Docker?
+
+Why Use Docker?
+
+A Use case Driven Problem Statement
+ 1.Applying the Solution with Docker
+ 2.Docker Installation
+
+Chose OS
+1.Install Docker
+2.Start docker Service
+3.Stop docker
+
+Docker Architecture
+1.Docker Client
+2.Docker Daemon
+
+Docker Basic Commands
+1.docker version
+2.docker info
+3.docker help
+4.docker images
+5.docker pull
+6.docker rmi
+7.docker ps
+8.docker login
+9.docker push
+10.docker rm
+
+Writing Docker File
+1.Creating Docker File using
+2.Visual Source Code IDE
+3.Understanding the Instructions used in Docker file
+
+Docker Images
+1Understanding the Base Image
+2.Image Layered Structure
+3.Internals of docker Image
+4.rootfs
+5.Bootfs
+6.Build Process of docker Images
+7.Tagging the images
+8.Image Generation with Docker Commit.
+9.Get all images
+10.Run , inspect, remove and prune images
+
+Docker Containers
+1.Running Docker Containers from Images
+2.Listing Running Containers
+3.Container Lifecycle
+4.Start,Stop and Restart Containers
+5.Removing the Containers
+6.Retrieving the Logs from Containers
+7.Container With Dependencies-Muti Containers
+8.Starting Containers in shell
+9.Resource Utilization
+10.Attach and Detaching to a Container
+11.History
+12.Running Containers in Bash Mode using IT flag
+13.Container Isolation
+
+Docker Volume
+1.Advantages
+2.Bind Mounts
+3.Volumes over Bind Mounts
+4.Creating Volumes
+5.List all Volumes
+6.Run Container on Volumes
+7.Remove Volumes
+
+Docker Compose
+1.Installation
+2.Docker Compose file
+3.Check the validity of the file
+4.Run docker compose
+5.Stop docker
+6.Scale the containers
+
+
+
 1.Docker Container.
 2.Port Mapping ,rename container , restart container , exec container , Copy file in container.
 3.Create Docker image from Running Container .
@@ -22,3 +106,4 @@ Docker Compose :
 5.Integration with Docker Swarm or Kubernetes
 6.Continuous Integration and Deployment (CI/CD) with Docker Compose
 7.Docker Compose in Microservices Architecture
+
