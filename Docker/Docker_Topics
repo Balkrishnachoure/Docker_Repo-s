@@ -21,18 +21,29 @@ Docker Architecture:
 2.Docker Daemon
 
 Docker Basic Commands:
-1.docker version
-2.docker info
-3.docker help
-4.docker images
-5.docker pull
-6.docker rmi
-7.docker ps
-8.docker login
-9.docker push
-10.docker rm
+1.docker pull [image_name]
+2.docker images
+3.docker run [options] [image_name]
+4.docker ps
+5.docker stop [container_id]
+6.docker rm [container_id]
+7.docker rmi [image_name]
+8.docker build [options] [path_to_Dockerfile]
+9.docker push [image_name]
+10.docker exec [options] [container_id] [command]
+11.docker network ls
+12.docker volume ls
+13.docker logs [container_id]
+14.docker inspect [container_id]
+15.docker-compose up
+16.docker-compose down
+17.docker-compose build
+18.docker-compose logs [service_name]Writing 
+19.docker-compose exec [service_name] [command]
+20.docker-compose restart [service_name]
 
-Writing Docker File :
+
+Writting Docker File :
 1.Creating Docker File using
 2.Visual Source Code IDE
 3.Understanding the Instructions used in Docker file
