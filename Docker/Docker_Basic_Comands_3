@@ -1,5 +1,9 @@
 1. docker pull <image_name> : To pull the image from Docker Registry. Eg : docker pull ubuntu .
+
+
 2. docker images : To list all the docker images that are currently downloaded on your system .
+
+
 3. docker run  <options> <image_name> : Used to create and start a new container based on the image you mentioned .
                <options> include :  -d : To run the container in background(detach mode) .
                                     -it or --interactive and tty : To interact with container's shell .
@@ -7,6 +11,8 @@
                                                       container to port 8080 on host .
                                    -v or --volume : BindMount the volume form host into the container .
                                                     Eg:  -v /host/path:/container/path .
+
+
 4. docker ps  <options>: List all the runnig container on the system .
                <options> : -a or --all : Dispaly all runnig and stopped containers .
 
