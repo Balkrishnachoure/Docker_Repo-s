@@ -1,4 +1,10 @@
-1.Docker Client
+1.Docker Client : IT is nothing but an Command-line-tool .
 2.Docker Daemon
 
-DOcker Deamon ; 
+Docker Deamon : It is also know as Docker Engine or we can say that it is a background process that manage the docker 
+                objects like Container ,Images ,Volumes and Networks .
+Docker Client communicate with docker deamon to execute the Commands we run .
+Docker Deamon is responsible for : 
+1.Starting and Stoping the container .
+2. pulling images fprom Registries . 
+3. Managing the life cycle of Docker Resources on host system .
