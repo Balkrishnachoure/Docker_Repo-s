@@ -1,4 +1,4 @@
-1.Docker Client : IT is nothing but an Command-line-tool .
+1.Docker Client : It is nothing but an Command-line-tool .
 2.Docker Daemon
 
 Docker Deamon : It is also know as Docker Engine or we can say that it is a background process that manage the docker 
