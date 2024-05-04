@@ -1,6 +1,4 @@
-Topics : 
-What is Docker?
-Why Use Docker?
+
 
 What is Docker?
 Docker is the platform taht enable  developers to create ,develop and manage the Application in Containers .
@@ -9,6 +7,8 @@ Containers are light Weight, portable and Self-Sufficient Units that package the
 
 It also  provide standarized way to package and Distribute the Application with their dependencies and Ensure consistency 
 accross different Environment like Dev Environment, Production Env ,Testing Env .
+
+
 
 Why Use Docker?
 1. Consistency : Ensure Consistency accross differenct Environment .
