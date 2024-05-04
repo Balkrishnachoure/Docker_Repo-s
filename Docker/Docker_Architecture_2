@@ -8,3 +8,5 @@ Docker Deamon is responsible for :
 1.Starting and Stoping the container .
 2. pulling images fprom Registries . 
 3. Managing the life cycle of Docker Resources on host system .
+
+Docker Architectre Diagram : https://www.geeksforgeeks.org/architecture-of-docker/
