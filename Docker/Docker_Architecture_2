@@ -9,4 +9,11 @@ Docker Deamon is responsible for :
 2. pulling images fprom Registries . 
 3. Managing the life cycle of Docker Resources on host system .
 
+Note : Docker Deamon = Images +Container .
+       Docker Host = Docekr Deamon + Images +Contianers .
+       Docker Objectsare Nothing but  : Containers .
+                                       2. Images.
+                                       3. Storage.
+                                       4. Networking.
+
 Docker Architectre Diagram : https://www.geeksforgeeks.org/architecture-of-docker/
