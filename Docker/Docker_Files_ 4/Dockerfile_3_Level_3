@@ -1,0 +1,40 @@
+# Stage 1: Build the application
+FROM openjdk:11 as builder
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy the source code into the container
+COPY . /app
+
+# Install build dependencies (if any)
+RUN apt-get update && \
+    apt-get install -y build-essential maven
+
+# Compile the Java application
+RUN javac Main.java
+
+# Build the application using Maven (if applicable)
+# RUN mvn clean package
+
+# Stage 2: Create a lightweight runtime image
+FROM openjdk:11-jre-slim
+
+# Set environment variables (if needed)
+ENV APP_NAME="MyJavaApp"
+ENV APP_VERSION="1.0"
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy the compiled application from the builder stage
+COPY --from=builder /app/Main.class /app
+
+# Copy additional resources or configuration files
+# COPY config.properties /app
+
+# Expose ports (if needed)
+EXPOSE 8080
+
+# Set default command to run the Java application when the container launches
+CMD ["java", "-Dapp.name=$APP_NAME", "-Dapp.version=$APP_VERSION", "Main"]
