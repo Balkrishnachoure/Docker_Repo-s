@@ -1,4 +1,14 @@
 #Specify the Base image for you docker container 
 FROM ubuntu:latest 
 
+# It set the working directory in the container .
+WORKDIR /app 
 
+# Copy the content of curent directory into the container at location /app
+COPY . /app
+
+# Install JDK with -y to automatically answer "yes"
+RUN apt-get update && apt-get install -y default-jdk
+
+# To run the Java application when the container launches 
+CMD ["java", "-jar" , "yourapp_name.jar"]
