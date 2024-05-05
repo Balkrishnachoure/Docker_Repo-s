@@ -1,0 +1,17 @@
+
+Both the Dockerfile and Docker-compose serve different purpose and have Difference Functionality .
+
+1. Docker file : It is the text file that contains instructions for building Image .
+                  It starts with 'FROM' specifying base image followed by instructions like 'RUN', 'COPY','EXPOSE','CMD' .
+
+             2.It is also used to define Environmet  and dependencies required by and application and also specify how 
+               the application should be configured in Container .
+
+             3.Docker file is mainly used for building single-container docker images.
+
+
+2. Docker-Compose : It is used for running multi-container Docker applications .
+                     In docker-compose.yml we define services ,networks and volumes to make up the application .
+                     It simpfy the management of mulit-container application , as we cas easily spin up the environment
+                      with single command .
+                
