@@ -1,0 +1,23 @@
+# Stage 1 : (builder) = base image for container + copt src code into the container + complie java app using "javac"
+FORM openjdk:11 as builder 
+
+# Setting working inside the container  
+WORKDIR  /app
+# Copy the source code into the container 
+COPY . /app 
+
+
+# Complier the java application 
+RUN javac Main.java 
+
+# Stage 2 : Create light_weight image 
+FROM openjdk:11-jre-slim 
+
+#Set working directory in container 
+WORKDIR /app
+
+# Copy the complied application form builde stage to /app 
+COPY --from=builder /app/<Main.class /app
+
+# Run the application when container launches 
+CMD["java" ,"Main"]
