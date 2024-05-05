@@ -14,4 +14,8 @@ Both the Dockerfile and Docker-compose serve different purpose and have Differen
                      In docker-compose.yml we define services ,networks and volumes to make up the application .
                      It simpfy the management of mulit-container application , as we cas easily spin up the environment
                       with single command .
+
+
+Note : In summary, while Dockerfile is used to define the build steps for a single Docker image, 
+       Docker Compose is used to define and manage multi-container applications. 
                 
