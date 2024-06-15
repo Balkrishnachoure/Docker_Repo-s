@@ -15,7 +15,12 @@ Basic Terminologies :
         assigned to the Pod .It can also contains the volumes .
 2.Replicate Set (RS): It is a Kubernatese object that ensures there is always stable set set of running pods for 
                 for specific workload .
-Name Space : Way to organise the Clusters into virtual SubClusters .Eg: Seperating the clusters for Dev, UAT , Development .
+3.Name Space : Way to organise the Clusters into virtual SubClusters .Eg: Seperating the clusters for Dev, UAT , Development .
+
+4. Kurenates Service : Used to redirects the traffic or port mapping .The idea of the service is to group the 
+             set of pod endpoints into a single resource .
+
+
 
 
 
