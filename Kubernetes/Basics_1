@@ -1,1 +1,21 @@
+What is Kubernates ? 
+It is a popural Container Orchestration tool .Similar to Docker Swarm(it is also an Orchestration tool) .
+
+UseCases : 
+1.In orchestration tool we have Kubernatese Cluster . This cluster contains the multiple containers and monitor the
+health of servcies .If the container in not in healthy state the it will destroy the container and create the new 
+one and up and run the services .In this way the management of service become eas with the help of Kbenatese .
+
+2.Kubernatese also helps in Blue green deployment means upate the version on service with zero downtime .
+
+3.Autoscaling : It means if the traffic is increased the nodes will automatically get added .
+
+Basic Terminologies : 
+1 POD : It is a collection of one or more containers and th smalest unit of Kubernates application .Ip address is 
+        assigned to the Pod .It can also contains the volumes .
+2.Replicate Set (RS): It is a Kubernatese object that ensures there is always stable set set of running pods for 
+                for specific workload .
+Name Space : Way to organise the Clusters into virtual SubClusters .Eg: Seperating the clusters for Dev, UAT , Development .
+
+
 
