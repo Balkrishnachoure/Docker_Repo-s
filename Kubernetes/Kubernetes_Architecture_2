@@ -9,6 +9,9 @@ Controller-Manager : It monitor the current state of your cluster through Api se
           to keep the application running by ensuring that pods are in healthy state .
 Schedular :It assign the pods to the Nodes .It determine which Node is suitable for each pod according to constraints 
           and available resources .
+
+
+Worker Node : 
 Kublet : It is a node-agent and is responsible to manage the life cycle of Containers .It comunicates with the
          Api server to ensure that containers are running as intended and report back any issues that occur .
 
