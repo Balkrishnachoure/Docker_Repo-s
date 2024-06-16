@@ -2,8 +2,20 @@ Links :
 Kub_architecture : https://kubernetes.io/docs/concepts/architecture/
 
 Architecture : 
- Api Server : It validate and configure data for pods ,services, replicationControllers etc through etcd .
- etcd : It is a distributed key-value store that manage the configuration data ,state data and metadata for 
+Api Server : It validate and configure data for pods ,services, replicationControllers etc through etcd .
+etcd : It is a distributed key-value store that manage the configuration data ,state data and metadata for 
         kubernetes .
 Controller-Manager : It monitor the current state of your cluster through Api server and make appropriate changes
           to keep the application running by ensuring that pods are in healthy state .
+Schedular :It assign the pods to the Nodes .It determine which Node is suitable for each pod according to constraints 
+          and available resources .
+Kublet : It is a node-agent and is responsible to manage the life cycle of Containers .It comunicates with the
+         Api server to ensure that containers are running as intended and report back any issues that occur .
+
+Service Object : We know that pods in kubernates can be terminated at any time and hence we cant rely on their IP 
+        as they can change at any time .Henc service bjec came in picture .It provide stable IP address to connect
+        Pods and aslo redirect the traffic to the pods .
+
+Kube-proxy : It is a network proxy that runs on each node in Kubernetes-cluster .It is installed on every node in 
+             the cluster and monitor the changes happen to service object and their endpoints .Ii then translate these 
+             changes to actual network rules .
