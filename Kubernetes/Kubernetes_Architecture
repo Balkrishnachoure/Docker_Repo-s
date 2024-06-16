@@ -1,0 +1,9 @@
+Links : 
+Kub_architecture : https://kubernetes.io/docs/concepts/architecture/
+
+Architecture : 
+ Api Server : It validate and configure data for pods ,services, replicationControllers etc through etcd .
+ etcd : It is a distributed key-value store that manage the configuration data ,state data and metadata for 
+        kubernetes .
+Controller-Manager : It monitor the current state of your cluster through Api server and make appropriate changes
+          to keep the application running by ensuring that pods are in healthy state .
