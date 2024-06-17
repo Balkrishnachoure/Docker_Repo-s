@@ -4,8 +4,8 @@ Specifies the version of the Docker Compose file format.
 
 Services:
 Defines the individual containers that make up your application.
-Common sub-topics:
 
+Common sub-topics:
 1.image: The Docker image to use for the service.
 2.build: Configuration options for building the Docker image.
 3.container_name: Custom name for the container.
