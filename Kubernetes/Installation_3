@@ -5,3 +5,13 @@ Some Basic Commands :
 
 sudo apt-get install 
 sudo apt-get install curl - To send data using syntax 
+
+Some Commands : 
+kubectl run my-first-pod --image=nginx --port=80  --restart=Never 
+kubectl get pods 
+kubectl exec -it my-first-pod -- /bin/bash - (To open shell in Container) 
+kubectl get nodes .
+kubectl get pod -o wide 
+kubectl get pod -o yaml 
+kubectl get pod -o json 
+
