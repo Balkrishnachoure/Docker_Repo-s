@@ -1,8 +1,8 @@
 Version:
 
 Specifies the version of the Docker Compose file format.
-Services:
 
+Services:
 Defines the individual containers that make up your application.
 Common sub-topics:
 
