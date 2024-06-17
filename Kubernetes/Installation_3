@@ -12,6 +12,9 @@ kubectl get pods
 kubectl exec -it my-first-pod -- /bin/bash - (To open shell in Container) 
 kubectl get nodes .
 kubectl get pod -o wide 
-kubectl get pod -o yaml 
+kubectl get pod <pod-name> -o yaml
 kubectl get pod -o json 
+kubectl explain pods 
+kubectl descirbe pod first-pod|less
 
+Q. How to work with docker inside the Pods ? 
