@@ -10,7 +10,7 @@ Both the Dockerfile and Docker-compose serve different purpose and have Differen
              3.Docker file is mainly used for building single-container docker images.
 
 
-2. Docker-Compose : It is used for running multi-container Docker applications .
+2. Docker-Compose : It is used define(create) and  run multi-container Docker applications .
                      In docker-compose.yml we define services ,networks and volumes to make up the application .
                      It simpfy the management of mulit-container application , as we cas easily spin up the environment
                       with single command .
