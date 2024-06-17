@@ -1,0 +1,55 @@
+Version:
+
+Specifies the version of the Docker Compose file format.
+Services:
+
+Defines the individual containers that make up your application.
+Common sub-topics:
+
+1.image: The Docker image to use for the service.
+2.build: Configuration options for building the Docker image.
+3.container_name: Custom name for the container.
+4.command: Override the default command for the container.
+5.ports: Map host ports to container ports.
+6.volumes: Mount host paths or volumes into the container.
+7.environment: Set environment variables.
+8.env_file: Specify a file containing environment variables.
+9.depends_on: Specify service dependencies.
+10.networks: Configure custom networks.
+11.links: Link to other services.
+12.restart: Restart policy for the container.
+13.healthcheck: Define health check parameters for the service.
+14.logging: Configure logging options.
+15.secrets: Define secrets that can be used by the services.
+16.configs: Define configurations that can be used by the services.
+
+Networks:
+Define custom networks and their configurations.
+Common sub-topics:
+driver: Specify the network driver to use.
+driver_opts: Options to pass to the driver.
+ipam: IP Address Management configuration.
+
+Volumes:
+Define named volumes for data persistence.
+Common sub-topics:
+driver: Specify the volume driver to use.
+driver_opts: Options to pass to the driver.
+
+Secrets:
+Define secrets for use by services, typically for sensitive data like passwords.
+Common sub-topics:
+file: Specify the file containing the secret.
+
+Configs:
+Define configuration data that can be used by services.
+Common sub-topics:
+file: Specify the file containing the configuration.
+
+Profiles:
+Define named groups of services that can be started and stopped together.
+
+Extensions:
+Add custom extensions to enhance functionality.
+Common sub-topics:
+x-: User-defined extensions for reusability and organization.
