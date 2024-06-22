@@ -1,1 +1,22 @@
+Docker Volumes : It allows you to persist the data generate and used by docker container . This stored the data outside
+                 the file system making them easier to manage compared to the data stored in Container .
+
+Purpose of Docker Volumes : 
+Volumes for Persistence: Ensure data remains across container restarts.
+
+Volumes for Development: Enable live reloading of code changes.
+
+Volumes for Configuration: Allow dynamic configuration changes.
+
+Volumes for Isolation: Keep data separate from container lifecycle.
+
+Volumes for Performance: Optimize I/O operations.
+
+Basic Commands : 
+ Create Volume : docker volume create my_volume
+ Run container with volume : docker run -d --name my_container -v my_volume:/app/data my_image
+ Inspect Volume : docker volume inspect my_volume
+
+
+
 
