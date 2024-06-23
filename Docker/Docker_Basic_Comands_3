@@ -43,11 +43,11 @@
 
 17. docker compose logs : To view the logs of running containers .
 
-16.docker-compose down : To stop and remove container ,networks and volume created by "docker compose up" .
+18.docker-compose down : To stop and remove container ,networks and volume created by "docker compose up" .
 
-17. docker-compose build : To only build the images for the services defined in "docker-compose.yml", but do not start 
+19. docker-compose build : To only build the images for the services defined in "docker-compose.yml", but do not start 
                            the container .
-18.docker-compose exec <service_name> <command> : Allow you to execute the command inside the running container created 
+20.docker-compose exec <service_name> <command> : Allow you to execute the command inside the running container created 
                                                   by docker-compose.yml .
 
 
