@@ -39,6 +39,9 @@
 
 15. docker-compose up : Used to start docker application define in "docker-compose.yml" It create and start all the 
                          services defined in the file .
+16. docker compose up --build : To rebuild the image and restart the container .
+
+17. docker compose logs : To view the logs of running containers .
 
 16.docker-compose down : To stop and remove container ,networks and volume created by "docker compose up" .
 
