@@ -1,5 +1,5 @@
 What is Kubernates ? 
-It is a popural Container Orchestration tool .Similar to Docker Swarm(it is also an Orchestration tool) .
+It is a popular Container Orchestration tool .Similar to Docker Swarm(it is also an Orchestration tool) .
 
 UseCases : 
 1.In orchestration tool we have Kubernatese Cluster . This cluster contains the multiple containers and monitor the
