@@ -4,6 +4,11 @@ Questions :
 2. Difference bet Client side server architecture and Server side architcture in KUernatese ? 
 3. Explain Kind , Metadata , apiversion , sepc in Kubernetes .yml file ? 
 4. Command to run kubernates .yml file ? How to see containers in the pods ? 
+5. What is the significance of labels in Kubernates ? 
+6. Command to edit the pod in deployment ? 
+7. What is the difference bet create command and apply command to execut .yml file in Kubernates  ? 
+8. How to set Envronment variale in pod container ? What is the Significance ? 
+9 . What is the comannd to run any command inside pod ? 
 
 
 
@@ -15,8 +20,84 @@ Ans 1 .   kubectl run my-pod --image=nginx --restart=Never
 
 Ans 2 .Kubernetes has a client-server architecture, where interactions between the Kubernetes client (such as kubectl) and the server (the Kubernetes control plane, including the API server) can be described as client-side and server-side processes.
 Ans 3 .
-Ans 4 . kubectl apply -f <file-name>.yaml .
-        kubectl get pods <pod-name> -o wide - To get basic info .
-        kubectl describe pod <pod-name>  - To get detailed info . 
+Ans 4 . kubectl apply -f <file-name>.yaml . or kubectl apply -f <file-name.yaml> --server-dry-run
+        kubectl get pods <pod-name> -o wide  -> To get basic info .
+        kubectl describe pod <pod-name>   -> To get detailed info .
+
+Ans 6. 
+1.If the pod is part of a deployment, you can edit the deployment, and Kubernetes will roll out the changes to the pods managed by that deployment.
+ 
+ # Command : kubectl edit deployment <deployment-name>
+
+2.For minor changes like updating labels or annotations, you can use the kubectl patch command.
+
+ # Command : kubectl patch pod <pod-name> -p '{"metadata": {"labels": {"new-label": "value"}}}' 
+
+
+Ans 7.  Both kubectl create and kubectl apply are used to execute YAML files and manage resources, but they behave differently based on the use case.
+
+1. kubectl create :
+
+   ->Purpose: Creates a resource in Kubernetes from the specified YAML file if it does not already exist.
+   ->Behavior:Creates the resource for the first time.
+              If the resource already exists, it throws an error indicating that the resource already exists.
+              Cannot be used for updating an existing resource.
+              It is imperative command .
+
+2.kubectl apply :
+ ->Purpose: Creates or updates a resource by applying changes described in the YAML file.
+ ->Behavior:If the resource does not exist, it creates the resource.
+          If the resource already exists, it updates the resource based on the differences between the live 
+          and desired state.
+  ->Declarative management: kubectl apply is used for declarative configuration .
+
+Use case: Updating deployments, config maps, etc. where you may want to modify or apply changes to an 
+         existing resource .
+
+Ans 8 . Significance of Environment Variables in Kubernetes Pods : 
+
+1.Decoupling Configuration from Code:
+Environment variables make it easy to configure an application without changing the code. You can use the same container image across different environments (development, testing, production) by simply changing the environment variables.
+
+2. Flexibility and Reusability:
+Containers can be reused across different environments or clusters by dynamically setting configuration through environment variables.
+
+ ### Example Use Case:
+If you have a web application container that connects to a database, you might define environment variables like DB_HOST, DB_USER, and DB_PASSWORD. These variables allow the application to point to different databases in different environments (e.g., dev, prod) without changing the application code:
+.yml file 
+---------
+apiVersion: v1
+kind: Pod
+metadata:
+  name: webapp-pod
+spec:
+  containers:
+    - name: webapp-container
+      image: my-webapp-image
+      env:
+        - name: DB_HOST
+          value: "db.mycompany.com"
+        - name: DB_USER
+          value: "user1"
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: db-password-secret
+              key: password
+---------------
+
+Ans 9 . # Command : kubectl exec -it <pod-name> -- /bin/bash -> To execute any command in pod 
+        # Command : docker exec <container-name> <command>
+
+
+Ans 10 .
+
+
+
+
+
+
+
+
 
 
