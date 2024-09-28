@@ -9,6 +9,9 @@ Questions :
 7. What is the difference bet create command and apply command to execut .yml file in Kubernates  ? 
 8. How to set Envronment variale in pod container ? What is the Significance ? 
 9 . What is the comannd to run any command inside pod ? 
+10 .Expalain Commands : netstat -nltp  , netcat -l -p 8080 ,telnet localhost 8080 ? 
+11.  How to create multiple containers in one pod ? How to verify port sharing by two containers in same pod ?
+12.
 
 
 
@@ -91,6 +94,50 @@ Ans 9 . # Command : kubectl exec -it <pod-name> -- /bin/bash -> To execute any c
 
 
 Ans 10 .
+# netstat -nltp : 
+netstat is a network utility used for monitoring incoming and outgoing network connections .
+
+# netcat -l -p 8080 :
+netcat (also known as nc) is a powerful networking utility used for reading from and writing to network connections using TCP or UDP .
+
+# telnet localhost 8080 :
+This command attempts to establish a connection to the localhost on port 8080
+
+
+Ans 11 . All containers in the same Pod share the same network namespace, so they can communicate over localhost .
+
+multi-container-pod.yaml file: 
+-------------------
+apiVersion: v1
+kind: Pod
+metadata:
+  name: multi-container-pod
+spec:
+  containers:
+  - name: nginx-container
+    image: nginx
+    ports:
+    - containerPort: 8080
+  - name: busybox-container
+    image: busybox
+    command: ['sh', '-c', 'while true; do wget -qO- http://localhost:8080; sleep 5; done']
+--------------------------
+In this case:
+ ->nginx-container serves content on localhost:8080.
+ ->busybox-container will send HTTP requests to http://localhost:8080 every 5 seconds to verify the port sharing.
+
+Steps : 
+1 .Deploying the Pod :kubectl apply -f multi-container-pod.yaml : 
+   Command :  kubectl apply -f multi-container-pod.yaml
+2.Verifying Port Sharing :
+    ->  Check the logs of the Busybox container:
+        Command : kubectl logs <pod-name> -c busybox-container
+    -> If the port sharing is successful, you should see the output of the HTTP response from the NGINX 
+       container
+
+Ans 12 : 
+
+
 
 
 
