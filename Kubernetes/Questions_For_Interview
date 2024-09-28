@@ -1,0 +1,18 @@
+
+1. Command to create pod ? 
+2. Difference bet Client side server architecture and Server side architcture in KUernatese ? 
+
+
+
+
+
+
+
+
+
+
+
+==============================================
+Ans 1 .   kubectl run my-pod --image=nginx --restart=Never
+
+Ans 2 .Kubernetes has a client-server architecture, where interactions between the Kubernetes client (such as kubectl) and the server (the Kubernetes control plane, including the API server) can be described as client-side and server-side processes.
