@@ -3,7 +3,7 @@ Questions :
 1. Command to create pod ? Comand to delete al pods ? Important command to wirte .yml file ? 
 2. Difference bet Client side server architecture and Server side architcture in KUernatese ? 
 3. Explain Kind , Metadata , apiversion , sepc in Kubernetes .yml file ? 
-4. Command to run kubernates .yml file ? 
+4. Command to run kubernates .yml file ? How to see containers in the pods ? 
 
 
 
@@ -11,8 +11,12 @@ Questions :
 Answers : 
 Ans 1 .   kubectl run my-pod --image=nginx --restart=Never 
           kbectl delete pods --all 
-          kubectl explain pod 
+          kubectl explain pod  or  kubectl explain pod --recursive(much better) 
 
 Ans 2 .Kubernetes has a client-server architecture, where interactions between the Kubernetes client (such as kubectl) and the server (the Kubernetes control plane, including the API server) can be described as client-side and server-side processes.
 Ans 3 .
-Ans 4 . kubectl apply -f <file-name>.yaml
+Ans 4 . kubectl apply -f <file-name>.yaml .
+        kubectl get pods <pod-name> -o wide - To get basic info .
+        kubectl describe pod <pod-name>  - To get detailed info . 
+
+
