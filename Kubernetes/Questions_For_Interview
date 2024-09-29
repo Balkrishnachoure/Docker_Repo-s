@@ -15,7 +15,7 @@ Questions :
 13 What is Kubctl expose command ? Explain for both clust IP and Node port ? 
 14 What is difference bet Pods and service ? [Link : https://dev.to/techworld_with_nana/kubernetes-services-simply-explained-d5 ]
 15. What is Node Port ? 
-16. 
+16. How service knows that the service has to redirect the request to the given particuar pods ? 
 
 
 
