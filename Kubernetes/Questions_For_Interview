@@ -11,7 +11,13 @@ Questions :
 9 . What is the comannd to run any command inside pod ? 
 10 .Expalain Commands : netstat -nltp  , netcat -l -p 8080 ,telnet localhost 8080 ? 
 11.  How to create multiple containers in one pod ? How to verify port sharing by two containers in same pod ?
-12.
+12. What is cluster IP ? 
+13 What is Kubctl expose command ? Explain for both clust IP and Node port ? 
+14 What is difference bet Pods and service ? [Link : https://dev.to/techworld_with_nana/kubernetes-services-simply-explained-d5 ]
+15. What is Node Port ? 
+16. 
+
+
 
 
 
@@ -135,14 +141,115 @@ Steps :
     -> If the port sharing is successful, you should see the output of the HTTP response from the NGINX 
        container
 
-Ans 12 : 
+Ans 12 :  There are different type of services in Kuernates we are going to learn two: 
+            1. Cluster IP .
+            2. Node port .
+
+Cluster IP :  
+ClusterIP is the default service type in Kubernetes, which exposes the service on an internal IP in the cluster.
+The ClusterIP allows communication between pods within the cluster without exposing the service externally.
 
 
+Ans 13 . The kubectl expose command in Kubernetes is used to create a Service that exposes a running Pod, Deployment, ReplicaSet, or ReplicationController to external or internal traffic.
+#Command : 
+kubectl expose <resource> <resource-name> --port=<port> --target-port=<target-port> --type=<service-type>
+
+1.Expose a Deployment as a ClusterIP Service:
+This will expose a deployment on a specific port inside the cluster:
+# Command : kubectl expose deployment my-deployment --port=80 --target-port=8080 --name=my-service
+
+2.Expose a Pod as a NodePort Service :
+This will expose a pod and make it accessible via a node's IP and a specific port:
+#Command : kubectl expose pod my-pod --port=80 --target-port=8080 --type=NodePort
+
+3.Expose a Service with LoadBalancer (for Cloud Providers):
+If you are running your cluster on a cloud platform that supports external load balancers (e.g., AWS, GCP, Azure), you can create a service that uses an external load balancer:
+
+# Command: kubectl expose deployment my-deployment --port=80 --target-port=8080 --type=LoadBalancer
 
 
+Ans 14 .
+
+ ## Pods : A Pod is the smallest and most basic deployable unit in Kubernetes. It represents one or more containers that are tightly coupled and share the same network namespace and storage. 
+
+Each pod has its own IP address, but these IPs are not stable; they can change when the pod is restarted or rescheduled.
+
+They represent one instance of a running process, such as a web server or database.
+Pods are transient, meaning they can be created, destroyed, or rescheduled by Kubernetes.
+
+Pods are assigned a unique IP address within the cluster, and containers within a pod share this IP.
+
+Pod IPs are ephemeral, meaning that if a pod dies and is recreated, it gets a new IP.
+
+---------
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+spec:
+  containers:
+  - name: my-container
+    image: nginx
+    ports:
+    - containerPort: 80
+
+----------
+ ## Service : A Service is an abstraction that defines a logical set of Pods and a policy for accessing them (usually via a stable IP address or DNS). Services provide stable, reliable networking for Pods, even as Pods are dynamically created or destroyed.
+
+Services provide network access to Pods. Since Pods have dynamic IPs, a Service provides a stable way to access Pods, whether from within the cluster (using a ClusterIP) or externally (using NodePort or LoadBalancer).
+
+Pods are assigned a unique IP address within the cluster, and containers within a pod share this IP.
+Pod IPs are ephemeral, meaning that if a pod dies and is recreated, it gets a new IP.
+
+--------------
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-service
+spec:
+  selector:
+    app: my-app
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
+  type: ClusterIP
 
 
+---------------
 
+Ans 15 : Node Port : In Kubernetes, NodePort is a type of Service that allows you to expose a service on a static port (the NodePort) on each node in the cluster.
+The NodePort is a static port that is the same across all nodes. This port number is used to access the service from outside the Kubernetes cluster.
+
+How NodePort Works:
+->Requests are made to NodeIP:NodePort.
+->Kubernetes forwards the traffic from the node to the corresponding service, which forwards it to the Pods.
+->It enables external access to a service without the need for additional cloud provider load balancers or external services .
+
+Use Case:
+Exposing services externally: If you need to access a service from outside the cluster but do not have a cloud provider’s LoadBalancer, you can use NodePort.
+Testing and debugging: NodePort is often used in development clusters or small setups to expose services without requiring cloud infrastructure.
+
+## Command : kubectl expose deployment my-deployment --type=NodePort --port=80 --target-port=8080
+-----------------------------
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-nodeport-service
+spec:
+  type: NodePort
+  selector:
+    app: my-app
+  ports:
+  - port: 80            # Port exposed by the service
+    targetPort: 8080     # Port on the Pod (container)
+    nodePort: 30007      # Port on each node (optional, if not specified, Kubernetes will pick one)
+--------------------------------
+# Accessing the Service:
+Ex :    http://<NodeIP>:<NodePort>
+Ex :    http://192.168.1.10:30007
+
+Ans 16 : 
 
 
 
