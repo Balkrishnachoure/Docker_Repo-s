@@ -16,6 +16,9 @@ Questions :
 14 What is difference bet Pods and service ? [Link : https://dev.to/techworld_with_nana/kubernetes-services-simply-explained-d5 ]
 15. What is Node Port ? 
 16. How service knows that the service has to redirect the request to the given particuar pods ? 
+17 .What is the use of Selectors ? 
+18. Create the 3 pods having same labels (Eg: app) ,and a single nodeport , when I hit the end point it 
+    should rediect the all the three pods accorrdingly ?
 
 
 
@@ -251,6 +254,83 @@ Ex :    http://192.168.1.10:30007
 
 Ans 16 : 
 
+
+Ans 17 : 
+         
+1. Binding Services to Pods:A Service uses the selector to route traffic to the correct Pods. The selector ensures that only Pods with matching labels receive traffic from the Service.
+--------------
+selector:
+  app: my-app
+-------------------
+2.Decoupling:
+It allows for decoupling the Service from the Pods' actual configuration. If you want to change which Pods receive traffic, you just need to update the Pods' labels, without modifying the Service.
+
+Ans 18 : 
+Step 1 : Create a Deployment with three replicas (this will ensure three Pods are created).
+Create a Service of type NodePort to expose the Pods and distribute traffic between them.
+
+## Create a Deployment with 3 Pods
+--------------------
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app-deployment
+spec:
+  replicas: 3  # Creates 3 Pods
+  selector:
+    matchLabels:
+      app: my-app
+  template:
+    metadata:
+      labels:
+        app: my-app  # All Pods will have this label
+    spec:
+      containers:
+        - name: my-app-container
+          image: nginx  # You can replace this with your app's image
+          ports:
+            - containerPort: 8080
+
+
+---------------------
+## Create a NodePort Service to Expose the Pods :
+-----------------------
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-app-service
+spec:
+  type: NodePort
+  selector:
+    app: my-app  # Matches the label of the Pods
+  ports:
+    - protocol: TCP
+      port: 80           # Service port (what external clients hit)
+      targetPort: 8080    # The port on the container (inside the Pod)
+      nodePort: 30007     # Expose this NodePort (optional; if omitted, Kubernetes will auto-assign)
+
+-----------------------
+
+Step 2: Save the YAML files: Save the above YAML in a file, e.g., my-app.yml.
+
+Step 3:
+kubectl apply -f my-app.yml
+
+Step 4: 
+
+kubectl get pods
+kubectl get svc
+
+Step 5 : 
+Access the service: To access the application, use the Node IP and NodePort (e.g., 30007). For example, if the Node IP is 192.168.99.100, you can access the service in your browser or using curl like this:
+
+Ans 19 :
+
+
+
+
+
+         
 
 
 
