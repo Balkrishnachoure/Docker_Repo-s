@@ -19,7 +19,7 @@ Questions :
 17 .What is the use of Selectors ? 
 18. Create the 3 pods having same labels (Eg: app) ,and a single nodeport , when I hit the end point it 
     should rediect the all the three pods accorrdingly ?
-19. What is Replication Controller ? 
+19. What is Replication Controller ? Give sample yml file ? 
 
 
 
@@ -325,8 +325,35 @@ kubectl get svc
 Step 5 : 
 Access the service: To access the application, use the Node IP and NodePort (e.g., 30007). For example, if the Node IP is 192.168.99.100, you can access the service in your browser or using curl like this:
 
-Ans 19 :
+Ans 19 : In Kubernetes, a ReplicationController is responsible for ensuring that a specified number of replicas (identical Pods) are running at all times. If a Pod goes down or is deleted, the ReplicationController will automatically replace it with a new one, making sure the desired state (number of running Pods) is always met.
 
+--------------------
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: my-app-rc
+spec:
+  replicas: 3  # Number of Pods to maintain
+  selector:
+    app: my-app  # Select Pods with this label
+  template:
+    metadata:
+      labels:
+        app: my-app  # All Pods will have this label
+    spec:
+      containers:
+        - name: my-app-container
+          image: nginx  # Application image
+          ports:
+            - containerPort: 80
+-------------------
+ # Components:
+replicas: Defines how many instances (Pods) of your application should run.
+selector: Tells the ReplicationController which Pods it should manage, based on labels.
+template: Defines the Pods that will be created by the ReplicationController.
+
+# Use Case for ReplicationController:
+You use a ReplicationController when you need to ensure a fixed number of stateless Pods are always running.
 
 
 
