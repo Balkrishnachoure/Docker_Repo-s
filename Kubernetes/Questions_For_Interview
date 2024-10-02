@@ -19,6 +19,7 @@ Questions :
 17 .What is the use of Selectors ? 
 18. Create the 3 pods having same labels (Eg: app) ,and a single nodeport , when I hit the end point it 
     should rediect the all the three pods accorrdingly ?
+19. What is Replication Controller ? 
 
 
 
