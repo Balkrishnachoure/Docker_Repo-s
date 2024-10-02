@@ -19,7 +19,7 @@ Questions :
 17 .What is the use of Selectors ? 
 18. Create the 3 pods having same labels (Eg: app) ,and a single nodeport , when I hit the end point it 
     should rediect the all the three pods accorrdingly ?
-19. What is Replication Controller ? Give sample yml file ? 
+19. What is Replication Controller ? Give sample yml file ?  Commands for replication Controller ?
 
 
 
@@ -354,6 +354,11 @@ template: Defines the Pods that will be created by the ReplicationController.
 
 # Use Case for ReplicationController:
 You use a ReplicationController when you need to ensure a fixed number of stateless Pods are always running.
+
+# Commands for Replication Controler : 
+ 1. kubectl apply -f <filename>.yaml : Create replication Controller .
+ 2.kubectl get rc : list replication controller .
+ 3.kubectl get rc -w : get replication Controller .
 
 
 
