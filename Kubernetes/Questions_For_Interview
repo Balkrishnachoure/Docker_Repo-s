@@ -23,7 +23,7 @@ Questions :
 20. Difference between  replicaset and Replica Controller ? 
 21. What is Difference bet In and Not In operator in Match Expression in Replica Set ? 
 22. What is Kubernates Deployment Obejct and Deployment Controller ? What is Recreate Strategy ? What is rolling update Strategy ? 
-
+23.Write sample deploymet  .yml file ? 
 ==============================================
 Answers : 
 Ans 1 .   kubectl run my-pod --image=nginx --restart=Never 
@@ -419,6 +419,47 @@ The Recreate Strategy is a deployment approach where all existing pods are delet
 
  -> The update happens incrementally by creating new pods while removing old ones, minimizing downtime and ensuring that the application remains available.
 
+Key Features of Rolling Update:
+Max Surge: Specifies how many additional pods are created temporarily during the update process.
+Max Unavailable: Controls how many existing pods can be unavailable during the update.
 
-
-
+Ans 24 . Sample .yml file for deployment : 
+----------------------------------------
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-app-deployment
+  labels:
+    app: web-app
+spec:
+  replicas: 3  # Number of pod replicas
+  selector:
+    matchLabels:
+      app: web-app
+  strategy:
+    type: RollingUpdate  # Deployment strategy, can be RollingUpdate or Recreate
+    rollingUpdate:
+      maxSurge: 1         # Maximum number of additional pods during update
+      maxUnavailable: 1   # Maximum number of unavailable pods during update
+  template:
+    metadata:
+      labels:
+        app: web-app
+    spec:
+      containers:
+      - name: web-container
+        image: nginx:1.17  # Container image to deploy
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+        env:
+        - name: ENV_VAR
+          value: "Production"  # Example environment variable
+---------------------------------------------------
+Ans 25 
