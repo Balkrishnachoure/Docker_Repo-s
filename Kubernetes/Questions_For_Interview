@@ -22,7 +22,7 @@ Questions :
 19. What is Replication Controller ? Give sample yml file ?  Commands for replication Controller ?
 20. Difference between  replicaset and Replica Controller ? 
 21. What is Difference bet In and Not In operator in Match Expression in Replica Set ? 
-
+22.
 
 ==============================================
 Answers : 
@@ -360,10 +360,54 @@ You use a ReplicationController when you need to ensure a fixed number of statel
  3.kubectl get rc -w : get replication Controller .
 
 
-Ans 20 . The Replica Controller in Kubernetes  ensures that  specified number of pod replicas are running at any given time. 
-
+Ans 20 .
+A ReplicaSet and a ReplicationController are both Kubernetes resources used to ensure a specified number of pod replicas are running at any given time, but they differ in functionality, flexibility, and usage
          
+Here are the main differences:
+1. Label Selector Support:
+ -> ReplicationController: Supports only equality-based selectors (e.g., key = value).
+ -> ReplicaSet: Supports both equality- and set-based selectors (e.g., key in [value1, value2]). This allows for more complex and flexible selection criteria.
 
+2.Integration with Deployments:
+ ->ReplicationController: Not commonly used with Deployments, as Deployments generally use ReplicaSets.
+ ->ReplicaSet: Is managed by a Deployment for most real-world applications. Deployments allow for advanced features like rolling updates, rollbacks, and scaling, which internally use ReplicaSets to manage the actual pods.
 
+Sample .yml file having matchlabel and matchExpression : 
+----------------
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: nginx-replicaset
+  labels:
+    app: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx  # Simple label match
+    matchExpressions:
+      - key: environment
+        operator: In
+        values:
+          - production
+          - staging
+      - key: tier
+        operator: NotIn
+        values:
+          - frontend
+  template:
+    metadata:
+      labels:
+        app: nginx
+        environment: production
+        tier: backend
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+--------------------------------------------------------------
 
+Ans .23 
 
