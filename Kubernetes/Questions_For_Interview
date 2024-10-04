@@ -22,7 +22,7 @@ Questions :
 19. What is Replication Controller ? Give sample yml file ?  Commands for replication Controller ?
 20. Difference between  replicaset and Replica Controller ? 
 21. What is Difference bet In and Not In operator in Match Expression in Replica Set ? 
-22.
+22. What is Kubernates Deployment Obejct and Deployment Controller ? What is Recreate Strategy ? What is rolling update Strategy ? 
 
 ==============================================
 Answers : 
@@ -408,6 +408,17 @@ spec:
         ports:
         - containerPort: 80
 --------------------------------------------------------------
-
 Ans .23 
+A Deployment in Kubernetes is an object that manages the desired state for applications by managing ReplicaSets. It allows you to define and control your application’s lifecycle, including scaling, rolling updates, and rollback if needed.
+
+ # Recreate Strategy :
+The Recreate Strategy is a deployment approach where all existing pods are deleted before new pods are created.
+
+# Rolling Update Strategy :
+ -> The Rolling Update Strategy is the default deployment strategy in Kubernetes. In this approach, the old version of the application is gradually replaced with the new version.
+
+ -> The update happens incrementally by creating new pods while removing old ones, minimizing downtime and ensuring that the application remains available.
+
+
+
 
