@@ -23,7 +23,9 @@ Questions :
 20. Difference between  replicaset and Replica Controller ? 
 21. What is Difference bet In and Not In operator in Match Expression in Replica Set ? 
 22. What is Kubernates Deployment Obejct and Deployment Controller ? What is Recreate Strategy ? What is rolling update Strategy ? 
-23.Write sample deploymet  .yml file ? 
+23.Write sample deployment  .yml file ? 
+24. If a changes the number of replicas in my .yml then will my rollout will trigger  ? 
+25 . Expalin the rolling updates in Kubernates .yml file ? 
 ==============================================
 Answers : 
 Ans 1 .   kubectl run my-pod --image=nginx --restart=Never 
@@ -423,7 +425,7 @@ Key Features of Rolling Update:
 Max Surge: Specifies how many additional pods are created temporarily during the update process.
 Max Unavailable: Controls how many existing pods can be unavailable during the update.
 
-Ans 24 . Sample .yml file for deployment : 
+Ans 23 . Sample .yml file for deployment : 
 ----------------------------------------
 apiVersion: apps/v1
 kind: Deployment
@@ -462,4 +464,44 @@ spec:
         - name: ENV_VAR
           value: "Production"  # Example environment variable
 ---------------------------------------------------
-Ans 25 
+Ans 24 .No, changing the number of replicas in your .yml file alone will not trigger a rollout. Kubernetes treats a change in the replicas field as a scaling action rather than a rollout.
+
+Rollout: A rollout only triggers when there is a change to fields that define the pod template spec (like image, env, labels, etc.).
+
+If you want to force a rollout, you can use this command to manually trigger it:
+
+ # Command : kubectl rollout restart deployment <deployment_name>
+
+Ans 25 .  In Kubernetes, a rolling update is a deployment strategy that gradually updates Pods with the new configuration, without causing downtime .
+
+ It ensures that the application remains available by only updating a few Pods at a time, replacing old Pods with new ones based on the updated .yml configuration.
+
+----------------------------------------------------
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app
+spec:
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: my-app
+    spec:
+      containers:
+      - name: my-app-container
+        image: my-app-image:latest
+-----------------------------------------------------------------------------
+ -> type: Specifies the strategy type. For rolling updates, set it to RollingUpdate.
+
+ -> rollingUpdate: Defines the specifics for the rolling update:
+1. maxUnavailable: Sets the maximum number of Pods that can be unavailable during the update. For instance, 
+         maxUnavailable: 1 means that only one Pod can go down at a time.
+2.maxSurge: Sets the maximum number of Pods that can be created beyond the desired number during the update. For example, 
+          maxSurge: 1 allows Kubernetes to create one additional Pod while rolling out.
+
