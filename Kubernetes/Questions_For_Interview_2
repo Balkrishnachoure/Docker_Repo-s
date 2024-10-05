@@ -1,1 +1,104 @@
+26. Explain Kubernates Rollout  ? 
+27.What is the default value if we dont define maxsurge and maxunavailable ? 
+28.Explain Resource limit in Kubernates ? 
+29.
+
+
+
+
+===================================================================
+
+Ans 26. In Kubernetes, a rollout refers to the process of updating a deployment to a new version of an application. It ensures smooth upgrades with minimal downtime by rolling out changes incrementally, maintaining availability while testing the new version. The rollout mechanism allows you to control the speed, manage failures, and even roll back to a previous state if something goes wrong.
+
+Some RollOut Commands : 
+1. Check Rollout Status: You can track the progress of a rollout using the command:
+  # Command: kubectl rollout status deployment/<deployment-name>
+
+2.Rollout History: To view the history of rollouts, including past revisions:
+ #Command :kubectl rollout history deployment/<deployment-name>
+
+3.Rollback: If an issue arises during a rollout, Kubernetes allows you to roll back to a previous version. You can roll back to any revision using:
+ #Command : kubectl rollout undo deployment/<deployment-name>
+
+# Example : 
+Suppose you have a Deployment running a web application (v1), and you want to update it to v2. You’d update the Deployment manifest to point to the new container image (v2), and then apply the changes:
+-----------------------
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: my-app
+  template:
+    metadata:
+      labels:
+        app: my-app
+    spec:
+      containers:
+      - name: my-app-container
+        image: my-app:v2  # Update the image version
+-------------------------------------------------
+Then, apply the updated deployment:
+ #Command : kubectl apply -f deployment.yaml
+
+Benefits of Kubernetes Rollout:
+ Zero Downtime: Rolling updates are designed to keep the service available during updates.
+ Control Over Updates: You can pause, resume, and roll back updates easily.
+ Version History: Kubernetes keeps track of past versions, allowing for smooth rollbacks.
+
+--------------
+Ans 27. In Kubernetes, during a rolling update for a Deployment, the default behavior is defined by two key parameters: maxSurge and maxUnavailable. These parameters control how many Pods can be created or deleted at the same time during the update process.
+
+# Default Values:
+
+1. maxSurge (Default: 25%):
+This parameter specifies the maximum number of extra Pods that can be created during the update process, relative to the desired number of Pods.
+For example, if your Deployment has 4 replicas, a default maxSurge of 25% means Kubernetes can temporarily create 1 additional Pod (25% of 4 = 1) while the update is happening. So, during the update, up to 5 Pods could be running.
+
+2. maxUnavailable (Default: 25%):
+This parameter specifies the maximum number of Pods that can be unavailable during the update process.
+Using the same example, if you have 4 replicas, a default maxUnavailable of 25% means 1 Pod can be taken down and unavailable while the new version is being rolled out.
+
+----------
+Ans 28 :
+In Kubernetes, resource limits help control how much CPU and memory a container can use within a cluster. Setting appropriate resource requests and limits ensures that containers have the resources they need to run, while also preventing a single container from consuming too many resources and affecting other workloads.
+
+Key Concepts:
+
+1.Requests:
+Request is the amount of CPU or memory that a container is guaranteed to have. If a node has enough resources, the container will get at least this amount.
+
+The Kubernetes scheduler uses the request value to decide which node can run the container.
+
+2.Limits:
+Limit is the maximum amount of CPU or memory that a container can use. The container can burst up to this value, but it cannot exceed this limit.
+
+If the container tries to exceed the specified limit:
+For CPU, it will be throttled, meaning it will be allowed to use only up to the limit, and no more.
+For memory, if the container exceeds the memory limit, it will be terminated (killed) by the system and possibly restarted.
+--------------------------
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+spec:
+  containers:
+  - name: my-container
+    image: nginx
+    resources:
+      requests:
+        memory: "64Mi"   # Request 64 MiB of memory
+        cpu: "250m"      # Request 250 milliCPU (0.25 of a CPU core)
+      limits:
+        memory: "128Mi"  # Set maximum memory limit to 128 MiB
+        cpu: "500m"      # Set maximum CPU limit to 500 milliCPU (0.5 of a CPU core)
+
+----------------------------
+
+Ans 29 : 
+
+
 
