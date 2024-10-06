@@ -1,7 +1,7 @@
 26. Explain Kubernates Rollout  ? 
 27.What is the default value if we dont define maxsurge and maxunavailable ? 
 28.Explain Resource limit in Kubernates ? 
-29.
+29.What is NameSpace in Kubernatese ? 
 
 
 
@@ -98,7 +98,36 @@ spec:
 
 ----------------------------
 
-Ans 29 : 
+Ans 29 : In Kubernetes, a namespace is a way to divide cluster resources between multiple users or applications. It is essentially a virtual cluster that allows for organizing and isolating resources such as pods, services, and other objects within a single physical Kubernetes cluster. This is especially useful in larger environments where multiple teams or projects share the same Kubernetes infrastructure.
+
+Namespaces provide the following key functionalities:
+
+Resource Isolation: Namespaces allow for isolating workloads. Different teams, environments (development, staging, production), or applications can be kept separate within the same Kubernetes cluster by assigning resources to different namespaces.
+
+Scoping: Namespaces help scope resource names. Kubernetes object names (like pods, services, etc.) must be unique within a namespace but can be reused across different namespaces. This means you can have objects with the same name in different namespaces without conflict.
+
+Resource Quotas: You can use resource quotas to limit the amount of resources (CPU, memory, etc.) that a particular namespace can consume, ensuring fair resource distribution.
+
+Access Control: Namespaces work with Kubernetes Role-Based Access Control (RBAC) to restrict or grant access to specific resources in a namespace. This enables you to define permissions for different users or services on a per-namespace basis.
+
+Default Namespace: Kubernetes provides a default namespace called default, which is used when no other namespace is specified.
+
+## Example Commands:
+1.To list all namespaces in a cluster:
+    Command : kubectl get namespaces 
+
+2.To create a new namespace:
+    Command : kubectl create namespace my-namespace
+
+3. To deploy resources in a specific namespace:
+    Command : kubectl apply -f pod.yaml --namespace=my-namespace
+
+
+
+
+
+
+
 
 
 
