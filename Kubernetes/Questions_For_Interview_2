@@ -4,7 +4,8 @@
 29.What is NameSpace in Kubernatese ? 
 30 Real Life use case of Namspace ? Can we create nampspace inside name space ? 
 31.Create two servcie in two different nameSpace and access the one service form another namespace ? Write steps ?
-32 .
+32.What is DNS service in Kubernates ? 
+33.
 
 
 
@@ -239,10 +240,27 @@ To access a service across namespaces, Kubernetes automatically provides a fully
    ## Command: # Inside test-pod, run the following command to access service-a
                   wget -qO- service-a.namespace-a.svc.cluster.local
 
+-----------------------
+Ans 32 . In Kubernetes, DNS (Domain Name System) is a core service that provides service discovery by allowing pods and services within a cluster to discover and communicate with each other using DNS names rather than hardcoded IP addresses. The Kubernetes DNS service automatically creates DNS entries for services and pods, allowing them to be accessed by a name rather than by their IP address, which may change over time.
 
+Key Points About DNS in Kubernetes:
 
+1. Service Discovery:
+Kubernetes DNS allows services to be discovered using their names. For example, if a service named my-service is created in a namespace called my-namespace, other services or pods can access it via my-service.my-namespace.svc.cluster.local (the fully qualified domain name or FQDN).
 
+2.Pod-to-Service Communication:
 
+When a pod wants to communicate with another service in the cluster, it can use DNS. For example, if a service named backend is running in the default namespace, any pod can reach it via backend.default.svc.cluster.local.
+
+3.Automatic DNS Resolution for Services:
+Every time a Kubernetes service is created, it automatically gets a DNS entry. The format is:
+ ## <service-name>.<namespace>.svc.cluster.local
+For example, if you create a service called api-service in the dev namespace, it can be accessed using api-service.dev.svc.cluster.local.
+
+## DNS Name Structure in Kubernetes:   <service-name>.<namespace>.svc.cluster.local
+----------------------------------------
+
+Ans 33 .
 
 
 
