@@ -2,6 +2,9 @@
 27.What is the default value if we dont define maxsurge and maxunavailable ? 
 28.Explain Resource limit in Kubernates ? 
 29.What is NameSpace in Kubernatese ? 
+30 Real Life use case of Namspace ? Can we create nampspace inside name space ? 
+31.Create two servcie in two different nameSpace and access the one service form another namespace ? Write steps ?
+32 .
 
 
 
@@ -122,7 +125,119 @@ Default Namespace: Kubernetes provides a default namespace called default, which
 3. To deploy resources in a specific namespace:
     Command : kubectl apply -f pod.yaml --namespace=my-namespace
 
+4. To get pod in specific namespace : 
+    Command : kubectl get pods --namespace=<namespace-name>
+-------------------------------------
 
+Ans 30 .  
+Kubernetes namespaces are used to organize and isolate resources within a cluster. They are useful for separating different environments, teams, or projects in a shared cluster, ensuring better management, security, and resource allocation. While you cannot create a namespace inside another namespace (as Kubernetes does not support nested namespaces), namespaces offer various real-life use cases across different industries.
+
+1.Multi-Tenant Clusters :
+A single Kubernetes cluster can be used by multiple teams (tenants), with each tenant getting its own namespace. This ensures that teams can work in isolation.
+
+2.Separation of Environments :
+Namespaces are commonly used to separate development, staging, and production environments. Each environment gets its own namespace (e.g., dev, staging, prod).
+
+3. Isolating Microservices :
+In microservices architectures, different microservices can be deployed in separate namespaces for better isolation and management.
+
+4.CI/CD Pipelines
+Namespaces can be used to create separate environments for continuous integration/continuous deployment (CI/CD) pipelines, where each pipeline stage is isolated from the others.
+
+------------------------------------
+Ans 31.
+Overview:
+1.Create two namespaces (namespace-a and namespace-b).
+2.Deploy a service and pod in each namespace.
+3.Access the service in namespace-a from a pod in namespace-b.
+
+## Steps:
+
+Step 1: Create Namespaces :Create two namespaces, namespace-a and namespace-b.
+------------
+# Create namespace-a
+kubectl create namespace namespace-a
+
+# Create namespace-b
+kubectl create namespace namespace-b
+-------------------
+
+Step 2: Deploy a Pod and Service in namespace-a :
+----------------
+# file: service-a.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-a
+  labels:
+    app: pod-a
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-a
+spec:
+  selector:
+    app: pod-a
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+
+----------------
+Apply the configuration to namespace-a:
+## Command : kubectl apply -f service-a.yaml --namespace=namespace-a
+
+Step 3: Deploy a Pod and Service in namespace-b
+------------------
+# file: service-b.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-b
+  labels:
+    app: pod-b
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-b
+spec:
+  selector:
+    app: pod-b
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+
+------------------
+ Apply the configuration to namespace-b:
+## Command : kubectl apply -f service-b.yaml --namespace=namespace-b
+
+Step 4: Access service-a from namespace-b :
+
+To access a service across namespaces, Kubernetes automatically provides a fully qualified domain name (FQDN) for services in the format:  <service-name>.<namespace>.svc.cluster.local
+
+
+ ->So, for service-a in namespace-a, the FQDN would be:
+
+ ##Command service-a.namespace-a.svc.cluster.local
+
+ -> Now, to test this, create a temporary pod in namespace-b to use as a client and connect to service-a.
+ ## Command : # Run a test pod in namespace-b to access service-a
+              kubectl run test-pod --rm -i --tty --image=busybox --namespace=namespace-b -- /bin/sh
+
+  -> Once inside the test-pod, use wget or curl to access service-a using its FQDN:
+   ## Command: # Inside test-pod, run the following command to access service-a
+                  wget -qO- service-a.namespace-a.svc.cluster.local
 
 
 
