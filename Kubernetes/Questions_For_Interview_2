@@ -5,7 +5,8 @@
 30 Real Life use case of Namspace ? Can we create nampspace inside name space ? 
 31.Create two servcie in two different nameSpace and access the one service form another namespace ? Write steps ?
 32.What is DNS service in Kubernates ? 
-33.
+33.What is Resource Quota in Kubrnates ? 
+34. How to use ConfigMaps in kuernates file ? 
 
 
 
@@ -261,6 +262,44 @@ For example, if you create a service called api-service in the dev namespace, it
 ----------------------------------------
 
 Ans 33 .
+In Kubernetes, a ResourceQuota is a policy that limits the amount of resources (such as CPU, memory, and storage) that can be consumed by a namespace.
 
+## Key Points of Resource Quota:
 
+1. Namespace Scope:
+
+Resource quotas apply at the namespace level. Each namespace can have its own quota, restricting the total amount of resources that pods, services, and other objects can use in that specific namespace.
+
+## Types of Resource Quotas:
+
+1.Compute Resource Quota: Sets limits on the total CPU and memory a namespace can use.
+Example:
+Total CPU (in cores) across all pods in a namespace.
+Total memory (in bytes) across all pods in a namespace.
+
+2.Storage Resource Quota: Limits the amount of persistent volume claims (PVCs) a namespace can make.
+Example:
+Total storage (in bytes) across all PVCs in a namespace.
+
+3. Object Quota: Restricts the number of Kubernetes objects, such as pods, services, configmaps, and secrets, that can be created in a namespace.
+
+Example:
+Maximum number of pods, configmaps, or secrets in a namespace.
+
+Sample .yaml file 
+------------------------------
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: compute-resources
+  namespace: dev
+spec:
+  hard:
+    pods: "10"                   # Maximum number of pods allowed in the namespace
+    requests.cpu: "4"             # Maximum total CPU requests across all pods in cores
+    requests.memory: "8Gi"        # Maximum total memory requests across all pods
+    limits.cpu: "8"               # Maximum total CPU limits across all pods
+    limits.memory: "16Gi"         # Maximum total memory limits across all pods
+-------------------------------------------------
+Ans 34 .
 
