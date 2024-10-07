@@ -302,7 +302,7 @@ spec:
     limits.cpu: "8"               # Maximum total CPU limits across all pods
     limits.memory: "16Gi"         # Maximum total memory limits across all pods
 -------------------------------------------------
-Ans 34 .In Kubernetes, if you only assign limits and do not assign requests for a pod, Kubernetes will assume the request is the same as the limit by default.
+Ans 34 .In Kubernetes, if you only assign limits and do not assign requests for a pod, Kubernetes will assume the request is the same as the limit by default  but vice versa is not possible .
 ---------------------------------------------
 
 
