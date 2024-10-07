@@ -6,7 +6,8 @@
 31.Create two servcie in two different nameSpace and access the one service form another namespace ? Write steps ?
 32.What is DNS service in Kubernates ? 
 33.What is Resource Quota in Kubrnates ? 
-34. How to use ConfigMaps in kuernates file ? 
+34. What happen if I  only assign limits and donts assign request in pod/ .yaml ? 
+
 
 
 
@@ -301,5 +302,7 @@ spec:
     limits.cpu: "8"               # Maximum total CPU limits across all pods
     limits.memory: "16Gi"         # Maximum total memory limits across all pods
 -------------------------------------------------
-Ans 34 .
+Ans 34 .In Kubernetes, if you only assign limits and do not assign requests for a pod, Kubernetes will assume the request is the same as the limit by default.
+---------------------------------------------
+
 
